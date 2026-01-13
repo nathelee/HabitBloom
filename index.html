@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HabitBloom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app__header">
+      <div class="title-group">
+        <span class="eyebrow">Daily Habits</span>
+        <h1>HabitBloom</h1>
+        <p class="subtitle">Track your daily habits</p>
+      </div>
+    </header>
+
+    <main class="app__main">
+      <section class="stats-card card" aria-live="polite">
+        <div class="stats__content">
+          <p class="stats__label">Weekly completion</p>
+          <h2 class="stats__headline">
+            You completed <span id="stats-percent">0</span>% of your habits this week
+          </h2>
+          <p class="stats__detail" id="stats-detail">Completed: 0 / 0 check-ins</p>
+          <p class="stats__hint" id="stats-hint">Add habits to start tracking.</p>
+        </div>
+        <div class="progress">
+          <div class="progress__bar" id="stats-bar" style="width: 0%;"></div>
+        </div>
+      </section>
+
+      <section class="add-habit card">
+        <div class="section-title">
+          <h2>Add a habit</h2>
+          <p>Build consistency one day at a time.</p>
+        </div>
+        <form id="habit-form" class="habit-form" novalidate>
+          <label class="input-label" for="habit-name">Habit name</label>
+          <div class="input-row">
+            <input
+              id="habit-name"
+              name="habit-name"
+              type="text"
+              maxlength="40"
+              placeholder="Drink water, read 10 pages..."
+              autocomplete="off"
+              required
+            >
+            <button class="button button--primary" type="submit">Add habit</button>
+          </div>
+          <label class="input-label" for="habit-start">Start date</label>
+          <input
+            id="habit-start"
+            name="habit-start"
+            type="date"
+            required
+          >
+          <p class="helper">Max 40 characters. Keep it short and specific.</p>
+        </form>
+      </section>
+
+      <section class="habits">
+        <div id="empty-state" class="empty-state card">
+          <div class="empty-state__art">🌷</div>
+          <h3>No habits yet. Add your first one!</h3>
+          <p>Start small and let the streaks grow.</p>
+        </div>
+        <div id="habit-list" class="habit-list"></div>
+      </section>
+    </main>
+
+    <footer class="app__footer">
+      <p>Small wins every day.</p>
+    </footer>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <div id="confirm-modal" class="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-action="close-modal"></div>
+    <div
+      class="modal__card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      aria-describedby="modal-body"
+    >
+      <h3 id="modal-title">Delete habit?</h3>
+      <p id="modal-body">This will remove its history.</p>
+      <div class="modal__actions">
+        <button class="button button--ghost" type="button" data-action="cancel-delete">Cancel</button>
+        <button class="button button--danger" type="button" data-action="confirm-delete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
